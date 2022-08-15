@@ -19,7 +19,7 @@ model:
       oarepo:use: '#/$defs/DocumentMetadata'
       properties:
         dateDefended:
-          oarepo:use: '#/$defs/Date'
+          oarepo:use: '#/$defs/NRDate'
           oarepo:sample:
             faker: date
         defended:
@@ -28,7 +28,9 @@ model:
             - true
             - false
         degreeGrantor[]:
-          oarepo:use:
+          oarepo:vocabulary:
+            type: institutions
+            fields: [id, title]
         studyFields[]:
           type: keyword
         # todo: this will be moved later to secondary community
