@@ -1,13 +1,14 @@
 version: 1.0.0
 title: Czech National Repository - documents
 oarepo:use:
-  - ./nr-documents-records.yaml
+  - ./nr-documents-records-model.yaml
 
 plugins:
   packages:
     - oarepo-model-builder-multilingual
     - oarepo-model-builder-ui
-    - oarepo-vocabularies-model-builder
+    - nr-vocabularies
+    - oarepo-vocabularies
   builder:
     disable:
       - poetry

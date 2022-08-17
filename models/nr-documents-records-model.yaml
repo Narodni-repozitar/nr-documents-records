@@ -2,7 +2,6 @@ version: 1.0.0
 title: Czech National Repository - document metadata model
 oarepo:use:
   - nr-common-metadata
-  - nr-vocabularies
   - invenio
 model:
   oarepo:marshmallow:
