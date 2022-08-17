@@ -1,48 +1,76 @@
 version: 1.0.0
 title: Czech National Repository - documents
 oarepo:use:
-  - invenio
-  - ./unsupported.yaml
-  - ./docs.yaml
-  - nr_common_metadata
+  - ./nr-documents-records.yaml
 
 plugins:
   packages:
-    - oarepo-model-builder-multilingual,
-    - oarepo-model-builder-ui,
-    - oarepo-vocabularies-model-builder,
+    - oarepo-model-builder-multilingual
+    - oarepo-model-builder-ui
+    - oarepo-vocabularies-model-builder
+  builder:
+    disable:
+      - poetry
+      - cookiecutter
+      - invenio_ext_poetry
+      - invenio_sample_app_poetry
+      - invenio_record_metadata_alembic_poetry
+      - invenio_record_metadata_models_poetry
+      - invenio_record_resource_poetry
+      - invenio_record_search_poetry
+      - invenio_record_jsonschemas_poetry
+      - invenio_script_bootstrap
+      - invenio_script_runserver
+      - invenio_script_import_sample_data
+      - script_sample_data
+      - invenio_script_runserver
+
+oarepo:sample:
+  count: 1
+
+# model:
+#   properties:
+#     metadata:
+#       oarepo:use: '#/$defs/DocumentMetadata'
+#       properties:
+#         dateDefended:
+#           oarepo:use: '#/$defs/NRDate'
+#           oarepo:sample:
+#             faker: date
+#         defended:
+#           type: boolean
+#           oarepo:sample:
+#             - true
+#             - false
+#         degreeGrantor[]:
+#           oarepo:vocabulary:
+#             type: institutions
+#             fields: [id, title]
+#         studyFields[]:
+#           type: keyword
+#         # todo: this will be moved later to secondary community
+#         collection:
+#           type: keyword
+oarepo:ui:
+  translation:
+    default: 'en'
 
 settings:
   supported-langs:
     cs: {}
     en: {}
-
-oarepo:sample:
-  count: 1
+  package: 'nr_documents_records'
+  schema-server: 'local://'
+  python:
+    record-prefix: 'NRDocumentRecord'
+    flask-extension-name: 'nr-documents-records'
+    ext-class: 'nr_documents_records.ext.NRDocumentsRecordsExt'
+    record-class: 'nr_documents_records.records.api.NRDocumentRecord'
+    record-schema-class: nr_documents_records.services.schema.NRDocumentSchema
+  oarepo:vocabularies:
+    schema: nr-vocabularies
+    record-class: nr_vocabularies.records.api.NRVocabulary
 
 model:
-  properties:
-    metadata:
-      oarepo:use: '#/$defs/DocumentMetadata'
-      properties:
-        dateDefended:
-          oarepo:use: '#/$defs/NRDate'
-          oarepo:sample:
-            faker: date
-        defended:
-          type: boolean
-          oarepo:sample:
-            - true
-            - false
-        degreeGrantor[]:
-          oarepo:vocabulary:
-            type: institutions
-            fields: [id, title]
-        studyFields[]:
-          type: keyword
-        # todo: this will be moved later to secondary community
-        collection:
-          type: keyword
-oarepo:ui:
-  translation:
-    default: 'en'
+  oarepo:marshmallow:
+    generate: true

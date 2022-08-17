@@ -8,7 +8,7 @@
 
 set -e
 
-deactivate || true
+.venv-model-builder/bin/deactivate || true
 
 test -d .venv-model-builder && rm -rf .venv-model-builder
 python3.10 -m venv .venv-model-builder
