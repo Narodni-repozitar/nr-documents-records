@@ -1,7 +1,7 @@
 version: 1.0.0
 title: Czech National Repository - documents
 oarepo:use:
-  - invenio,
+  - invenio
   - ./unsupported.yaml
   - ./docs.yaml
   - nr_common_metadata
