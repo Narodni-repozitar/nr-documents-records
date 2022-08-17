@@ -79,3 +79,4 @@ fail_requirements.txt
 successful_requirements.txt
 
 .venv/
+.venv-model-builder/
