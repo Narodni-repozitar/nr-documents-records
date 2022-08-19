@@ -8,7 +8,7 @@ plugins:
     - oarepo-model-builder-multilingual
     - oarepo-model-builder-ui
     - nr-vocabularies
-    - oarepo-vocabularies
+    - oarepo-vocabularies-model-builder
   builder:
     disable:
       - poetry
